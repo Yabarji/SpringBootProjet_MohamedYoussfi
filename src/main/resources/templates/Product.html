@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+<head>
+<meta charset="utf-8"/>
+<title>Products</title>
+
+	<link rel = "stylesheet" type = "text/css" href = "../static/css/style.css" th:href = "@{css/style.css}">
+	<!-- <link rel = "stylesheet" type = "text/css" href = "../static/css/bootstrap.min.css" th:href = "@{css/bootstrap.min.css}">
+	-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" 
+integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" 
+crossorigin="anonymous">
+
+        
+</head>
+<body>
+
+	<div class= "container">
+		<form th:action="@{index}" method='get'>
+			<label>Mot clé:</label>
+			<input type="text"  name="motCle" th:value="${motCle}"/>
+			<button class="btn btn-primary">Chercher</button>
+		</form>
+	</div>
+	<div class = "container">
+		<h3>Liste des produits</h3>
+		<table class= "table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Désignation</th>
+					<th>Prix</th>
+					<th>Quantité</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each = "p:${listProducts}">
+					<td th:text = "${p.id}"></td>
+					<td th:text = "${p.designation}"></td>
+					<td th:text = "${p.price}"></td>
+					<td th:text = "${p.amount}"></td>
+					<td><a onclick="return confirm('Etes vous sûr de vouloir supprimer cette ligne ?')" th:href="@{delete(id=${p.id}, page=${pageCourante}, size=${size}, motCle=${motCle})}">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		
+		<nav class="container">
+			<ul class = "nav nav-pills">
+				<!-- <li class="nav-item"  th:each = "page,status:${pages}"> -->
+				<li   th:class="${pageCourante} == ${status.index} ? 'nav-link active':''" th:each = "page,status:${pages}">
+					<a th:class=" ${pageCourante} == ${status.index} ? 'courant':'nav-link'" th:href="@{index(page=${status.index}, size=${size},motCle=${motCle})}" th:text="${status.index}"></a>
+				</li>
+			</ul>
+		</nav>		
+		
+	</div>
+</body>
+    
+</html>
