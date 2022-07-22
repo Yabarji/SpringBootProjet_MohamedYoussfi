@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface ProductRepository extends JpaRepository<Product, Long>{
-	@Query("select p from Product p where p.designation like :x")
-	public Page<Product> chercher(@Param("x")String mc,Pageable pageable);
+	@Query("select p from Product p where p.designation like:x ORDER BY id")
+	public Page<Product> chercher(@Param("x")String mc, Pageable pageable);
 }

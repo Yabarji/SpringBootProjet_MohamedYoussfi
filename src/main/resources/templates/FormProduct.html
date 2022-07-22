@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="layout">
+  
+<head>
+<meta charset="utf-8"/>
+<title>Add Products</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" 
+	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" 
+	crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{css/style.css}">
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+		<div class = "spacer col-md-6 col-xs-12">
+			<div class = "card">
+				<div class = "card-header">Saisie d'un produit</div>
+				<div class = "card-body">
+					<form th:action = "@{save}" method = "post">
+						<div class = "form-group">
+							<label class="control-label">Désignation:</label>
+							<input class="form-control" type="text" name="designation" th:value="${product.designation}"/>
+							<span class="red" th:errors="${product.designation}"></span>
+						</div>
+						<div class = "form-group">
+							<label class="control-label">Prix:</label>
+							<input class="form-control" type="text" name="price" th:value="${product.price}"/>
+							<span class="red" th:errors="${product.price}"></span>
+						</div>
+						<div class = "form-group">
+							<label class="control-label">Quantité:</label>
+							<input class="form-control" type="text" name="amount" th:value="${product.amount}"/>
+							<span class="red" th:errors="${product.amount}"></span>
+						</div>
+						<div>
+							<button type="submit" class="btn btn-primary">Save</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
