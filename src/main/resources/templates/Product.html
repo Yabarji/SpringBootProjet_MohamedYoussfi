@@ -20,6 +20,7 @@
 <body>
 
 	<div layout:fragment="content">
+	<br>
 		<div class= "container">
 			<form th:action="@{index}" method='get'>
 				<label>Mot clé:</label>
@@ -44,7 +45,7 @@
 						<td th:text = "${p.designation}"></td>
 						<td th:text = "${p.price}"></td>
 						<td th:text = "${p.amount}"></td>
-						<td><a th:href="@{edit(id=${p.id})}"><button type="button" class="btn btn-primary">Edit</button></a></td>
+						<td><a th:href="@{edit(id=${p.id})}"><button type="button" class="btn btn-success">Edit</button></a></td>
 						<td><a onclick="return confirm('Etes vous sûr de vouloir supprimer cette ligne ?')" th:href="@{delete(id=${p.id}, page=${pageCourante}, size=${size}, motCle=${motCle})}"><button type="button" class="btn btn-danger">Delete</button></a></td>
 						
 					</tr>
@@ -62,6 +63,7 @@
 			</nav>		
 			
 		</div>
+		<br>
 	</div>
 </body>
     
